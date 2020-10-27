@@ -246,27 +246,7 @@ class Fullscreen {
 
   // Make an element fullscreen
   enter() {
-    if (!this.enabled) {
-      return;
-    }
 
-    // iOS native fullscreen doesn't need the request step
-    if (browser.isIos && this.player.config.fullscreen.iosNative) {
-      if (this.player.provider === 'vimeo') {
-        this.player.requestFullscreen().then(function () {
-          console.log('entered')
-        }).catch(function (error) {
-          console.log('error occurred:', error)
-        })
-      }
-      this.target.webkitEnterFullscreen();
-    } else if (!Fullscreen.native || this.forceFallback) {
-      this.toggleFallback(true);
-    } else if (!this.prefix) {
-      this.target.requestFullscreen({ navigationUI: 'hide' });
-    } else if (!is.empty(this.prefix)) {
-      this.target[`${this.prefix}Request${this.property}`]();
-    }
   }
 
   // Bail from fullscreen
