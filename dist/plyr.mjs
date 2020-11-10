@@ -4209,6 +4209,14 @@ var Fullscreen = /*#__PURE__*/function () {
 
 
       if (browser.isIos && this.player.config.fullscreen.iosNative) {
+        if (this.player.provider === 'vimeo') {
+          this.player.requestFullscreen().then(function () {
+            console.log('entered');
+          }).catch(function (error) {
+            console.log('error occurred:', error);
+          });
+        }
+
         this.target.webkitEnterFullscreen();
       } else if (!Fullscreen.native || this.forceFallback) {
         this.toggleFallback(true);
