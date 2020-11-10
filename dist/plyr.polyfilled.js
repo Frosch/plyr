@@ -10093,7 +10093,7 @@ typeof navigator === "object" && (function (global, factory) {
       vimeo: {
         sdk: 'https://player.vimeo.com/api/player.js',
         iframe: 'https://player.vimeo.com/video/{0}?{1}',
-        api: 'https://vimeo.com/api/v2/video/{0}.json'
+        api: 'https://vimeo.com/api/oembed.json?url={0}'
       },
       youtube: {
         sdk: 'https://www.youtube.com/iframe_api',
@@ -12168,17 +12168,13 @@ typeof navigator === "object" && (function (global, factory) {
       } // Get poster image
 
 
-      fetch(format(player.config.urls.vimeo.api, id), 'json').then(function (response) {
-        if (is$1.empty(response)) {
+      fetch(format(player.config.urls.vimeo.api, src)).then(function (response) {
+        if (is$1.empty(response) || !response.thumbnail_url) {
           return;
-        } // Get the URL for thumbnail
+        } // Set and show poster
 
 
-        var url = new URL(response[0].thumbnail_large); // Get original image
-
-        url.pathname = "".concat(url.pathname.split('_')[0], ".jpg"); // Set and show poster
-
-        ui.setPoster.call(player, url.href).catch(function () {});
+        ui.setPoster.call(player, response.thumbnail_url).catch(function () {});
       }); // Setup instance
       // https://github.com/vimeo/player.js
 
