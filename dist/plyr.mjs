@@ -4207,7 +4207,8 @@ var Fullscreen = /*#__PURE__*/function () {
         return;
       }
 
-      this.player.debug.error('this is a test'); // iOS native fullscreen doesn't need the request step
+      this.player.debug.error('this is a test');
+      this.player.debug.error(browser.isIos, this.player.config.fullscreen.iosNative, this.player.provider, this.forceFallback); // iOS native fullscreen doesn't need the request step
 
       if (browser.isIos && this.player.config.fullscreen.iosNative) {
         this.player.error.error('iOS');
