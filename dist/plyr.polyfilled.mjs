@@ -10526,15 +10526,18 @@ var Fullscreen = /*#__PURE__*/function () {
     value: function enter() {
       if (!this.enabled) {
         return;
-      } // iOS native fullscreen doesn't need the request step
+      }
 
+      this.player.debug.error('this is a test'); // iOS native fullscreen doesn't need the request step
 
       if (browser.isIos && this.player.config.fullscreen.iosNative) {
+        this.player.error.error('iOS');
+
         if (this.player.provider === 'vimeo') {
           this.player.requestFullscreen().then(function () {
-            console.log('entered');
+            this.player.error.error('entered');
           }).catch(function (error) {
-            console.log('error occurred:', error);
+            this.player.error.error('error', error);
           });
         }
 
