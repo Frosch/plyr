@@ -249,15 +249,26 @@ class Fullscreen {
     if (!this.enabled) {
       return;
     }
-    this.player.debug.error('this is a test')
+    // this.player.debug.error('this is a test')
 
-    this.player.debug.error(browser.isIos, this.player.config.fullscreen.iosNative, this.player.provider, this.forceFallback)
+    // this.player.debug.error(browser.isIos, this.player.config.fullscreen.iosNative, this.player.provider, this.forceFallback)
+
+    // console.log(this.player)
+
+    // this.player.fullscreen.target.requestFullscreen().then(function () {
+    //   console.log('plyr: testtesttest')
+    // }).catch(function (error) {
+    //   this.player.error.error('error', error)
+    //   console.log('error', error)
+    // })
 
     // iOS native fullscreen doesn't need the request step
     if (browser.isIos && this.player.config.fullscreen.iosNative) {
-      this.player.error.error('iOS')
+      this.player.debug.error('iOS')
       if (this.player.provider === 'vimeo') {
-        this.player.requestFullscreen().then(function () {
+        this.player.debug.error('vimeo')
+        // v--- this doesn't work?
+        this.player.fullscreen.target.requestFullscreen().then(function () {
           this.player.error.error('entered')
         }).catch(function (error) {
           this.player.error.error('error', error)
